@@ -13,7 +13,8 @@
     "base64url": "^3.0.1"
   },
   "scripts": {
-    "watch": "webpack --watch -d"
+    "watch": "webpack --watch -d",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",

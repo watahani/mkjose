@@ -166,7 +166,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>webpack build</id>
+						<id>vite build</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>

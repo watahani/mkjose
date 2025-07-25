@@ -1,10 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Button, Tabs, Container, Section, Level, Form, Columns, Card, Table, Notification } from 'react-bulma-components';
+import { createRoot } from 'react-dom/client';
+import { Button, Tabs, Container, Section, Level, Form, Card, Table, Notification } from 'react-bulma-components';
 import i18n from './i18n';
-import { useTranslation } from 'react-i18next';
 import { Translation } from 'react-i18next';
+import { Buffer } from 'buffer';
 import base64url from 'base64url';
+import '../webapp/css/index.css';
+
+// Make Buffer available globally
+window.Buffer = Buffer;
 
 class MkJose extends React.Component {
 	constructor(props) {
@@ -1673,28 +1677,32 @@ const Footer = ({...props}) => {
 const urlObject = new URL(window.location);
 const lang = urlObject.searchParams.get('lang')
 
-ReactDOM.render((
-	<LanguageSwitch lang={lang} />
-	), 
-	document.getElementById('languageSwitch')
-);
+const languageSwitchElement = document.getElementById('languageSwitch');
+if (languageSwitchElement) {
+	const languageSwitchRoot = createRoot(languageSwitchElement);
+	languageSwitchRoot.render(<LanguageSwitch lang={lang} />);
+}
 
-ReactDOM.render((
-	<Translation i18n={i18n}>
-		{
-			(t, { i18n }) => <MkJose t={t} />
-		}
-	</Translation>
-	),
-	document.getElementById('react')
-);
+const reactElement = document.getElementById('react');
+if (reactElement) {
+	const reactRoot = createRoot(reactElement);
+	reactRoot.render(
+		<Translation i18n={i18n}>
+			{
+				(t, { i18n }) => <MkJose t={t} />
+			}
+		</Translation>
+	);
+}
 
-ReactDOM.render((
-	<Translation i18n={i18n}>
-		{
-			(t, { i18n }) => <Footer t={t} />
-		}
-	</Translation>
-	),
-	document.getElementById('footer')
-);
+const footerElement = document.getElementById('footer');
+if (footerElement) {
+	const footerRoot = createRoot(footerElement);
+	footerRoot.render(
+		<Translation i18n={i18n}>
+			{
+				(t, { i18n }) => <Footer t={t} />
+			}
+		</Translation>
+	);
+}

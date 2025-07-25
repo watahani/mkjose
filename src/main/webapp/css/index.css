@@ -10,3 +10,29 @@
 .title {
   margin-bottom: 3rem !important;
 }
+
+/* Table container styling with proper specificity */
+.card .card-content .table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.card .card-content .table-container .table {
+  width: 100%;
+  min-width: 100%;
+  table-layout: auto;
+}
+
+/* Generic table-container for non-card contexts */
+.section .table-container,
+.container .table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.section .table-container .table,
+.container .table-container .table {
+  width: 100%;
+  min-width: 100%;
+  table-layout: auto;
+}
